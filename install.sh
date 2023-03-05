@@ -30,7 +30,7 @@ if [[ $? == "0" ]]; then
 			else
 				echo "> Successfully installed to /usr/local/bin/"
 				exit 0
-				rm -f /usr/local/bin/ec2_system_stats.sh.old &> /dev/null
+				rm -f /tmp/ec2_system_stats.sh.old &> /dev/null
 			fi
 			else
 				echo "> Exiting..."
