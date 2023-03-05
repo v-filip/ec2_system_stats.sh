@@ -4,7 +4,13 @@
 
 Simple script that I personally use on an ec2 instance hosting my webserver
 
+<br>
 
+Oneliner
+
+```
+wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh ; sudo chmod +x ec2_system_stats.sh ; sudo chown ${USER}:${USER} ./ec2_system_stats.sh ; ./ec2_system_stats.sh --verbose
+```
 
 #### Usage 
 
