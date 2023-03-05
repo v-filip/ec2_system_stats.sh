@@ -10,6 +10,45 @@ fi
 
 ###
 
+### Deps
+
+echo ">Checking dependencies..."
+sudo apt-show-versions --version &> /dev/null 
+if [[ $? != "0" ]]; then
+	sudo apt install apt-show-versions -y &> /dev/null
+	echo ">Installing apt-show-versions..."
+	if [[ $? == "0" ]]; then
+		echo ">apt-show-versions successfully insatlled!"
+	else
+		echo ">Something went wrong, exiting..."
+		exit 1
+	fi
+fi
+
+sudo apt-show-versions | grep -i sysstat &> /dev/null
+if [[ $? != "0" ]]; then
+	sudo apt install sysstat -y &> /dev/null
+	if [[ $? == "0" ]]; then
+		echo ">iostat installed!"
+	else
+		echo ">Something went wrong, exiting..."
+		exit 1
+	fi
+fi
+
+sudo apt-show-versions | grep -i awk &> /dev/null
+if [[ $? != "0" ]]; then
+	sudo apt install awk -y &> /dev/null
+	if [[ $? == "0" ]]; then
+		echo ">awk installed!"
+	else
+		echo "Something went wrong, exiting..."
+		exit 1
+	fi
+fi
+
+echo ">All dependencies satisifed!"
+
 ###Colors
 
 YELLOW="\e[1;33m"
@@ -39,19 +78,6 @@ WEBSERVER_STATUS=$(systemctl status apache2 | awk '/Active/ {print $2}')
 
 ###VERBOSE
 if [[ $1 == "-v" || $1 == "--verbose" ]]; then
-	echo ">Checking dependencies..."
-	if [[ $? != "0" ]]; then
-		sudo apt install apt-show-versions -y &> /dev/null
-		echo ">Installing apt-show-versions..."
-		if [[ $? == "0" ]]; then
-			echo ">apt-show-versions successfully insatlled!"
-		else
-			echo ">Something went wrong, exiting..."
-			exit 1
-		fi
-	else
-		echo ">All dependencies satisfied!"
-	fi
 	VERBOSE_EXTRA_LINES=$(echo -e "${YELLOW}----------------------------------------${ENDCOLOR}")
 	VERBOSE_MOVE_DATE_CLOCK=$(echo "                     ")
 	VERBOSE_CPU_USR=$(iostat | head -4 | tail -1 | awk '{print $1}')
