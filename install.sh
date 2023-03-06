@@ -7,6 +7,23 @@ if [ $EUID != 0 ]; then
     exit $?
 fi
 
+if [[ $1 == "--uninstall" || $1 == "uninstall" ]]; then
+	if [[ -f /usr/local/bin/ec2_system_stats.sh ]]; then
+		echo "> Installation found, uninstalling..."
+		rm -rf /usr/local/bin/ec2_system_stats.sh
+		if [[ $? == "0" ]]; then
+			echo "> Successfully uninstalled!"
+			exit 0
+		else
+			echo "> Something went wrong, exiting!"
+			exit 1
+		fi
+	else
+		echo "> Nothing to uninstall, exiting..."
+		exit 1
+	fi
+fi
+
 echo $PATH | grep -i "/usr/local/bin" &> /dev/null
 
 if [[ $? == "0" ]]; then
