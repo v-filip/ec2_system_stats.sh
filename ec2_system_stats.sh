@@ -94,6 +94,10 @@ if [[ $1 == "-v" || $1 == "--verbose" ]]; then
 	VERBOSE_UFW=$(echo "(${VERBOSE_UFW})")
 	VERBOSE_UFW_V=$(sudo apt-show-versions | awk '/ufw/ {print $3}')
 	VERBOSE_UFW_V=$(echo "[${VERBOSE_UFW_V}] ")
+	VERBOSE_SSHD_PORT=$(cat /etc/ssh/sshd_config | awk '/Port/ {print $2}' | head -1)
+	VERBOSE_SSHD_ROOT=$(cat /etc/ssh/sshd_config | awk '/PermitRootLogin/ {print $2}' | head -1)
+	VERBOSE_SSHD_PASSWD=$(cat /etc/ssh/sshd_config | awk '/PasswordAuth/ {print $2}' | head -1)
+	VERBOSE_SSHD_PARSED=$(echo "(port ${VERBOSE_SSHD_PORT} | rootlogin ${VERBOSE_SSHD_ROOT} | passwdauth ${VERBOSE_SSHD_PASSWD})")
 	VERBOSE_SSHD_V=$(sudo apt-show-versions | awk '/openssh-server/ {print $3}')
 	VERBOSE_SSHD_V=$(echo "[${VERBOSE_SSHD_V}] ")
 	VERBOSE_FAIL2BAN=$(sudo fail2ban-client status sshd | awk '/Currently banned/ {print $4}')
@@ -115,7 +119,7 @@ echo -e "${CYAN}RAM:${ENDCOLOR} ${RAM_USED}/${RAM_TOTAL} ${GREEN}${VERBOSE_RAM_S
 echo -e "${CYAN}DISK:${ENDCOLOR} ${DISK_USED}/${DISK_TOTAL} ${GREEN}${VERBOSE_DISK_PARSED}${ENDCOLOR}"
 echo -e "${YELLOW}---------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
 echo -e "${CYAN}ufw:${ENDCOLOR} $FIREWALL_STATUS ${L_GREEN}${VERBOSE_UFW_V}${ENDCOLOR}${GREEN}${VERBOSE_UFW}${ENDCOLOR}"
-echo -e "${CYAN}SSHd:${ENDCOLOR} $SSHD_STATUS ${L_GREEN}${VERBOSE_SSHD_V}${ENDCOLOR}${GREEN}"
+echo -e "${CYAN}SSHd:${ENDCOLOR} $SSHD_STATUS ${L_GREEN}${VERBOSE_SSHD_V}${ENDCOLOR}${GREEN}${VERBOSE_SSHD_PARSED}${ENDCOLOR}"
 echo -e "${CYAN}fail2ban:${ENDCOLOR} $FAIL2BAN_STATUS ${L_GREEN}${VERBOSE_FAIL2BAN_V}${ENDCOLOR}${GREEN}${VERBOSE_FAIL2BAN_PARSED}${ENDCOLOR}"
 echo -e "${CYAN}apache:${ENDCOLOR} $WEBSERVER_STATUS ${L_GREEN}${VERBOSE_WEBSERVER_V}${ENDCOLOR}"
 echo -e "${YELLOW}---------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
