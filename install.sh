@@ -7,7 +7,7 @@ if [ $EUID != 0 ]; then
     exit $?
 fi
 
-echo $PATH | grep -i "/usr/sbin" &> /dev/null
+echo $PATH | grep -i "/usr/local/bin" &> /dev/null
 
 if [[ $? == "0" ]]; then
 	if [[ -f /usr/local/bin/ec2_system_stats.sh ]]; then
@@ -17,7 +17,6 @@ if [[ $? == "0" ]]; then
 		if [[ $ANSWER == "Y" || $ANSWER == "y" || $ANSWER == "yes" ]]; then
 			cd /tmp
 			echo "> Performing clean install..."
-			cp /usr/local/bin/ec2_system_stats.sh /tmp/ec2_system_stats.sh.old &> /dev/null
 			rm /usr/local/bin/ec2_system_stats.sh &> /dev/null
 			wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh &> /dev/null
 			chmod +x ec2_system_stats.sh &> /dev/null
@@ -26,11 +25,9 @@ if [[ $? == "0" ]]; then
 			if [[ $? != "0" ]]; then
 				echo "> Something went wrong, exiting..."
 				exit 1
-				mv /tmp/ec2_system_stats.sh.old /usr/local/bin/ec2_system_stats.sh &> /dev/null
 			else
 				echo "> Successfully installed to /usr/local/bin/"
 				exit 0
-				rm -f /tmp/ec2_system_stats.sh.old &> /dev/null
 			fi
 			else
 				echo "> Exiting..."
