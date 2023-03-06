@@ -78,8 +78,8 @@ WEBSERVER_STATUS=$(systemctl status apache2 | awk '/Active/ {print $2}')
 
 ###VERBOSE
 if [[ $1 == "-v" || $1 == "--verbose" ]]; then
-	VERBOSE_EXTRA_LINES=$(echo -e "${YELLOW}----------------------------------${ENDCOLOR}")
-	VERBOSE_MOVE_DATE_CLOCK=$(echo "                      ")
+	VERBOSE_EXTRA_LINES=$(echo -e "${YELLOW}--------------------------------${ENDCOLOR}")
+	VERBOSE_MOVE_DATE_CLOCK=$(echo "                   ")
 	VERBOSE_CPU_USR=$(iostat | head -4 | tail -1 | awk '{print $1}')
 	VERBOSE_CPU_SYS=$(iostat | head -4 | tail -1 | awk '{print $3}')
 	VERBOSE_CPU_PARSED=$(echo "(usr: ${VERBOSE_CPU_USR}% | sys: ${VERBOSE_CPU_SYS}%)")
