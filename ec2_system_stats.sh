@@ -110,16 +110,16 @@ if [[ $1 == "-v" || $1 == "--verbose" ]]; then
 fi
 ###	
 
-echo -e "${YELLOW}---------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
+echo -e "${YELLOW}-------------------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
 echo -e "     ${VERBOSE_MOVE_DATE_CLOCK}${L_GREEN}$CURRENT_DATE${ENDCOLOR}"
-echo -e "${YELLOW}---------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
+echo -e "${YELLOW}-------------------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
 echo -e "${CYAN}UPTIME:${ENDCOLOR} $UPTIME"
 echo -e "${CYAN}CPU(${CPU_CORES}c):${ENDCOLOR} ${CPU_USAGE}% ${GREEN}${VERBOSE_CPU_PARSED}${ENDCOLOR}"
 echo -e "${CYAN}RAM:${ENDCOLOR} ${RAM_USED}/${RAM_TOTAL} ${GREEN}${VERBOSE_RAM_SWAP_FINAL}${ENDCOLOR}"
 echo -e "${CYAN}DISK:${ENDCOLOR} ${DISK_USED}/${DISK_TOTAL} ${GREEN}${VERBOSE_DISK_PARSED}${ENDCOLOR}"
-echo -e "${YELLOW}---------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
+echo -e "${YELLOW}-------------------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
 echo -e "${CYAN}ufw:${ENDCOLOR} $FIREWALL_STATUS ${L_GREEN}${VERBOSE_UFW_V}${ENDCOLOR}${GREEN}${VERBOSE_UFW}${ENDCOLOR}"
 echo -e "${CYAN}SSHd:${ENDCOLOR} $SSHD_STATUS ${L_GREEN}${VERBOSE_SSHD_V}${ENDCOLOR}${GREEN}${VERBOSE_SSHD_PARSED}${ENDCOLOR}"
 echo -e "${CYAN}fail2ban:${ENDCOLOR} $FAIL2BAN_STATUS ${L_GREEN}${VERBOSE_FAIL2BAN_V}${ENDCOLOR}${GREEN}${VERBOSE_FAIL2BAN_PARSED}${ENDCOLOR}"
 echo -e "${CYAN}apache:${ENDCOLOR} $WEBSERVER_STATUS ${L_GREEN}${VERBOSE_WEBSERVER_V}${ENDCOLOR}"
-echo -e "${YELLOW}---------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
+echo -e "${YELLOW}-------------------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
