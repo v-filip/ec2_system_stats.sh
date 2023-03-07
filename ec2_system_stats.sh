@@ -79,7 +79,7 @@ WEBSERVER_STATUS=$(systemctl status apache2 | awk '/Active/ {print $2}')
 ###VERBOSE
 if [[ $1 == "-v" || $1 == "--verbose" ]]; then
 	VERBOSE_EXTRA_LINES=$(echo -e "${YELLOW}--------------------------------${ENDCOLOR}")
-	VERBOSE_MOVE_DATE_CLOCK=$(echo "                     ")
+	VERBOSE_MOVE_DATE_CLOCK=$(echo "                ")
 	VERBOSE_CPU_USR=$(iostat | head -4 | tail -1 | awk '{print $1}')
 	VERBOSE_CPU_SYS=$(iostat | head -4 | tail -1 | awk '{print $3}')
 	VERBOSE_CPU_PARSED=$(echo "(usr: ${VERBOSE_CPU_USR}% | sys: ${VERBOSE_CPU_SYS}%)")
@@ -102,16 +102,18 @@ if [[ $1 == "-v" || $1 == "--verbose" ]]; then
 	VERBOSE_SSHD_V=$(echo "[${VERBOSE_SSHD_V}] ")
 	VERBOSE_FAIL2BAN=$(sudo fail2ban-client status sshd | awk '/Currently banned/ {print $4}')
 	VERBOSE_FAIL2BAN_2=$(sudo fail2ban-client status sshd | awk '/Total banned/ {print $4}')
-	VERBOSE_FAIL2BAN_PARSED=$(echo "(Currently banned: ${VERBOSE_FAIL2BAN} | Total banned: ${VERBOSE_FAIL2BAN_2})")
+	VERBOSE_FAIL2BAN_PARSED=$(echo "(currently banned: ${VERBOSE_FAIL2BAN} | total banned: ${VERBOSE_FAIL2BAN_2})")
 	VERBOSE_FAIL2BAN_V=$(sudo apt-show-versions | awk '/fail2ban/ {print $3}')
 	VERBOSE_FAIL2BAN_V=$(echo "[${VERBOSE_FAIL2BAN_V}] ")
+	VERBOSE_WEBSERVER_LOG=$(cat /etc/apache2/apache2.conf | awk '/LogLevel/ {print $2}' | tail -1)
+	VERBOSE_WEBSERVER_PARSED=$(echo "(loglevel ${VERBOSE_WEBSERVER_LOG})")
 	VERBOSE_WEBSERVER_V=$(sudo apt-show-versions | awk '/apache2/ {print $3}' | head -1)
 	VERBOSE_WEBSERVER_V=$(echo "[${VERBOSE_WEBSERVER_V}] ")
 fi
 ###	
 
 echo -e "${YELLOW}-------------------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
-echo -e "     ${VERBOSE_MOVE_DATE_CLOCK}${L_GREEN}$CURRENT_DATE${ENDCOLOR}"
+echo -e "          ${VERBOSE_MOVE_DATE_CLOCK}${L_GREEN}$CURRENT_DATE${ENDCOLOR}"
 echo -e "${YELLOW}-------------------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
 echo -e "${CYAN}UPTIME:${ENDCOLOR} $UPTIME"
 echo -e "${CYAN}CPU(${CPU_CORES}c):${ENDCOLOR} ${CPU_USAGE}% ${GREEN}${VERBOSE_CPU_PARSED}${ENDCOLOR}"
@@ -121,5 +123,5 @@ echo -e "${YELLOW}-------------------------------------${ENDCOLOR}${VERBOSE_EXTR
 echo -e "${CYAN}ufw:${ENDCOLOR} $FIREWALL_STATUS ${L_GREEN}${VERBOSE_UFW_V}${ENDCOLOR}${GREEN}${VERBOSE_UFW}${ENDCOLOR}"
 echo -e "${CYAN}SSHd:${ENDCOLOR} $SSHD_STATUS ${L_GREEN}${VERBOSE_SSHD_V}${ENDCOLOR}${GREEN}${VERBOSE_SSHD_PARSED}${ENDCOLOR}"
 echo -e "${CYAN}fail2ban:${ENDCOLOR} $FAIL2BAN_STATUS ${L_GREEN}${VERBOSE_FAIL2BAN_V}${ENDCOLOR}${GREEN}${VERBOSE_FAIL2BAN_PARSED}${ENDCOLOR}"
-echo -e "${CYAN}apache:${ENDCOLOR} $WEBSERVER_STATUS ${L_GREEN}${VERBOSE_WEBSERVER_V}${ENDCOLOR}"
+echo -e "${CYAN}apache:${ENDCOLOR} $WEBSERVER_STATUS ${L_GREEN}${VERBOSE_WEBSERVER_V}${ENDCOLOR}${GREEN}${VERBOSE_WEBSERVER_PARSED}${ENDCOLOR}"
 echo -e "${YELLOW}-------------------------------------${ENDCOLOR}${VERBOSE_EXTRA_LINES}"
