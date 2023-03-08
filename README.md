@@ -16,7 +16,7 @@ wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_syst
 
 *Install*
 ```
-wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/install.sh ; chmod +x install.sh ; ./install.sh
+wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh ; chmod +x ec2_system_stats.sh ; ./ec2_system_stats.sh --install
 ```
 
 <br>
@@ -24,7 +24,7 @@ wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/install.
 *Uninstall*
 
 ```
-wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/install.sh ; chmod +x install.sh ; ./install.sh --uninstall
+wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh ; chmod +x ec2_system_stats.sh ; ./ec2_system_stats.sh --uninstall
 ```
 
 <br>
