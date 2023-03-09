@@ -7,7 +7,7 @@ Simple script that I personally use on an ec2 instance hosting my webserver
 Oneliner
 
 ```
-wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh ; sudo chmod +x ec2_system_stats.sh ; ./ec2_system_stats.sh --verbose
+wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh &> /dev/null ; sudo chmod +x ec2_system_stats.sh ; ./ec2_system_stats.sh --verbose
 ```
 
 ----
@@ -16,7 +16,7 @@ wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_syst
 
 *Install*
 ```
-wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh ; chmod +x ec2_system_stats.sh ; ./ec2_system_stats.sh --install
+wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh &> /dev/null ; chmod +x ec2_system_stats.sh ; ./ec2_system_stats.sh --install
 ```
 
 <br>
@@ -24,7 +24,7 @@ wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_syst
 *Uninstall*
 
 ```
-wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh ; chmod +x ec2_system_stats.sh ; ./ec2_system_stats.sh --uninstall
+wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_system_stats.sh &> /dev/null ; chmod +x ec2_system_stats.sh ; ./ec2_system_stats.sh --uninstall
 ```
 
 <br>
@@ -37,9 +37,12 @@ wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_syst
 
 ~/.scripts ❯ ./ec2_system_stats.sh help
 
--v --verbose
-
-    Prints more info!
+    -v --verbose
+        Prints more info!
+    -i --install
+        Installs the script for future use
+    -u --uninstall
+        Uninstalls the script
 ```
 
 <br>
