@@ -14,12 +14,6 @@ fi
 
 ###
 
-
-if [ $EUID != 0 ]; then
-    sudo "$0" "$@"
-    exit $?
-fi
-
 if [[ $1 == "--uninstall" || $1 == "uninstall" || $1 == "-u" ]]; then
 	if [ $EUID != 0 ]; then
     		sudo "$0" "$@"
