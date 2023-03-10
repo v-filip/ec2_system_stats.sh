@@ -49,10 +49,10 @@ wget https://raw.githubusercontent.com/v-filip/ec2_system_stats.sh/main/ec2_syst
 
 *Standard*
 
-![pic1](https://github.com/v-filip/ec2_system_stats.sh/blob/main/example_img_base_v2.png)
+![pic1](https://github.com/v-filip/ec2_system_stats.sh/blob/main/example_img_base_v3.png)
 
 <br>
 
 *Verbose*
 
-![pic1](https://github.com/v-filip/ec2_system_stats.sh/blob/main/example_img_verbose_v2.png)
+![pic1](https://github.com/v-filip/ec2_system_stats.sh/blob/main/example_img_verbose_v3.png)
